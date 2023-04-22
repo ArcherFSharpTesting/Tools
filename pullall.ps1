@@ -14,7 +14,7 @@ $dirs | ForEach-Object {
     $files = @()
     $file = $null
     $files = Get-ChildItem C:\Nuget.Local "$($location.Name)*.nupkg"
-    $file = ($files | Sort-Object -Descending | Select-Object -First 1).Name ?? "None"
+    $file = ($files | Sort-Object -Property {$_.LastWriteTime} -Descending | Select-Object -First 1).Name ?? "None"
     [void]$list.Add([Tuple]::Create($value, $file, $location))
     Set-Location ..
 }
