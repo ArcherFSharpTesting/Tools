@@ -20,15 +20,17 @@ $dirs | ForEach-Object {
 
 $list | ForEach-Object {
     [void]($_.Item2 -match '((\d+\.)+\d+)|(None)')
+    Write-Host "$($_.Item3.Name):"
     if ($_.Item1 -eq $Matches.0) {
+        Write-Host "`tSame"
     }
     else {
         if ($_.Item2 -eq "None")
         {
-            Write-Host "$($_.Item3.Name):`n`tVersion:`t$($_.Item1)`n`tPackage:`t.None"
+            Write-Host "`tVersion:`t$($_.Item1)`n`tPackage:`t.None"
         }
         else {
-            Write-Host "$($_.Item3.Name):`n`tVersion:`t$($_.Item1)`n`tPackage:`t$($Matches.0)"
+            Write-Host "`tVersion:`t$($_.Item1)`n`tPackage:`t$($Matches.0)"
         }
     }
 }
