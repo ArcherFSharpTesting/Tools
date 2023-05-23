@@ -4,7 +4,8 @@ $list = New-Object System.Collections.ArrayList
 Clear-Host
 $dirs | ForEach-Object {
     $location = $_
-    Write-Host "\n------ $($location) ------"
+    Write-Host ""
+    Write-Host "------ $($location) ------"
     Set-Location $location
     git pull
     if (Test-Path .\Lib\Directory.Build.props) {
@@ -20,16 +21,4 @@ $dirs | ForEach-Object {
     Set-Location ..
 }
 
-Write-Host ""
-Write-Host ""
-
-$list | ForEach-Object {
-    if ($_.Item2 -eq "None")
-    {
-        Write-Host "$($_.Item3.Name):`n`tVersion:`t.$($_.Item1)`n`tPackage:`t.None"
-    }
-    else {
-        [void]($_.Item2 -match '(\.\d+)+')
-        Write-Host "$($_.Item3.Name):`n`tVersion:`t.$($_.Item1)`n`tPackage:`t$($Matches.0)"
-    }
-}
+.\reportAll.ps1
