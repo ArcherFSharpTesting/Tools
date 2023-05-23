@@ -4,6 +4,7 @@ $list = New-Object System.Collections.ArrayList
 Clear-Host
 $dirs | ForEach-Object {
     $location = $_
+    Write-Host "\n------ $($location) ------"
     Set-Location $location
     git pull
     if (Test-Path .\Lib\Directory.Build.props) {
