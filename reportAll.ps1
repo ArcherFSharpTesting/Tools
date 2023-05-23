@@ -19,12 +19,16 @@ $dirs | ForEach-Object {
 }
 
 $list | ForEach-Object {
-    if ($_.Item2 -eq "None")
-    {
-        Write-Host "$($_.Item3.Name):`n`tVersion:`t.$($_.Item1)`n`tPackage:`t.None"
+    [void]($_.Item2 -match '((\d+\.)+\d+)|(None)')
+    if ($_.Item1 -eq $Matches.0) {
     }
     else {
-        [void]($_.Item2 -match '(\.\d+)+')
-        Write-Host "$($_.Item3.Name):`n`tVersion:`t.$($_.Item1)`n`tPackage:`t$($Matches.0)"
+        if ($_.Item2 -eq "None")
+        {
+            Write-Host "$($_.Item3.Name):`n`tVersion:`t$($_.Item1)`n`tPackage:`t.None"
+        }
+        else {
+            Write-Host "$($_.Item3.Name):`n`tVersion:`t$($_.Item1)`n`tPackage:`t$($Matches.0)"
+        }
     }
 }
