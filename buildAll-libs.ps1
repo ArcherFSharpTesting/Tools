@@ -8,7 +8,7 @@ $dirs | ForEach-Object {
     Push-Location $location
     git pull
     if (Test-Path *.sln) {
-        dotnet build        
+        dotnet build .\Lib
     }
     Pop-Location
     Write-Host ""
