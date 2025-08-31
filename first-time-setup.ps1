@@ -9,8 +9,8 @@ $projectOrder = @(
     "Reporting",
     "Validations",
     "Runner",
-    "Core",
-    "VSAdapter"
+    "Core" #,
+    #"VSAdapter"
 )
 
 $buildFailures = @()
